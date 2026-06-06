@@ -6,21 +6,24 @@
   "$cozy_global_font_type": "normal",  // 全局字體 
   "$cozy_stack_count_label_font_type": "OldSmoothFont",  // 物品數量文本字體 
   "$cozy_container_screen_background_alpha": 0.37619432,  // 容器背景透明度 
-  "$cozy_feature_inventory_display_stack_count_font_type": "OldSmoothFont",  // 背包顯示物品數量字體
-  
+  "$cozy_hud_chat_panel_offset_animation_duration": 0.431367,  // 聊天面板位移动画时长 
+  "$cozy_feature_inventory_display_stack_count_font_type": "OldSmoothFont",  // 背包顯示物品數量字體 
+    
+  "$cozy_button_hover_animation": true,  // 按鈕懸停動畫
   "$cozy_new_ender_chest_texture": true,  // 新末影箱背景貼圖 
-  "$cozy_start_screen_sever_button": false,  // 主介面顯示服務器按鈕 
+  "$cozy_start_screen_sever_button": false,  // 主介面顯示服務器按鈕 (1.xx.xx(我也忘了是什么版本)版本以下，映射会失效，旧版本没有这个映射) 
   "$cozy_exp_bar_gradient_animation": false,  // 经验条动态渐变貼圖 
   "$cozy_selector_gradient_animation": false,  // 选择框动态渐变貼圖 
   "$cozy_container_screen_background": false,  // 开启容器背景显示 
   "$cozy_double_close_container_screen": false,  //雙擊關閉容器介面 
+  "$cozy_hud_chat_panel_offset_animation": false,  //聊天面板位移动画 
   "$cozy_creative_inventory_tab_render_texture": true,  // 創造背包 tab 物品貼圖渲染 
   "$cozy_container_screen_close_on_player_hurt": false,  // 受傷時關閉容器介面 
   "$cozy_hud_item_name_hide_enchantment_text": false,  // hud 物品名稱隱藏附魔文字 
   "$cozy_container_screen_scale_transition_animation": true,  // 容器介面進入/退出過渡動畫 
   
   "$cozy_feature_hide_hud_button": false,  // 一鍵隱藏 hud 按鈕 
-  "$cozy_feature_hud_inventory_display": false,  // hud 界面显示背包内物品
+  "$cozy_feature_hud_inventory_display": false,  // hud 界面显示背包内物品 
   
   "$cozy_button_sound_name": "beacon.activate",
   "$cozy_button_sound_volume": 0.3,

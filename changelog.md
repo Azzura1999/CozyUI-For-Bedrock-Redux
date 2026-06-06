@@ -3,10 +3,10 @@
 > QQ Group : [1091237699](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=MS2Nc3XvKR77oPgxfji9SKpA4P-dE2mq&authKey=R%2FF%2BgjCB5OLILguExLaPJgOERwZC1VO%2BMa0lQpcAGuqb3%2Bu65KeOyAB7GhuVrNXd&noverify=0&group_code=1091237699)
 
 ---
-> 預覽：[觀看視頻](https://b23.tv/IGpA8ce)
+> 展示視頻：[觀看視頻](https://b23.tv/IGpA8ce)
 
 ## v1.0.0 — Redux
-> 全面重構，焕然一新
+> 全面重構 UI 代碼，新增容器動畫、漸變效果、HUD 背包顯示及雙擊關閉容器
 
 - `[#]` 重構 UI 程式碼
 - `[+]` 容器介面新增縮放過渡動畫
@@ -18,7 +18,14 @@
 - `[+]` 雙擊關閉容器
   > 需開啟變量 `$cozy_double_close_container_screen`
 
+## v1.0.1
+> 新增部分按鈕與聊天面板動畫，修復合成欄缺失物品背景
 
+- `[+]` 部分按钮動畫
+  > 需開啟變量 `$cozy_button_hover_animation`
+- `[+]` HUD 聊天面板位移動畫
+  > 需開啟變量 `$cozy_hud_chat_panel_offset_animation`
+- `[/]` 合成欄缺失物品背景
 
 
 
@@ -992,9 +999,3 @@
 
 
 
-
-
-
-
-真的會有人滑到最底下嗎？ 🤔(如果你是Markdown預覽看到的當我沒說)
-你知道嗎，為了盡快寫完 UI 玩異環，我後面很多介面都是隨便寫的🤓(作為合格的JSONUI創作者你必須會使用計算器)。還有很多程式碼是直接複製我其他UI裡的😋(我不知道為什麼會有 Bug，好奇怪😠)。 

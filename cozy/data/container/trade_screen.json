@@ -1,0 +1,618 @@
+{
+  "namespace": "cozy_screen:trade",
+  
+  "screen_content": {
+    "type": "panel",
+    "size": ["100.0%", "100.0%"],
+    "layer": 10,
+    "controls": [
+      {
+        "screen_panel@cozy_common:container.screen_base": {
+          "$size": [275, 166.0],
+          "controls": [
+            {
+              "container_exit_button@cozy_common:container.container_exit_button": {}
+            },
+            {
+              "left_panel": {
+                "type": "panel",
+                "size": ["36.0%", "100.0%"],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "controls": [
+                  {
+                    "trade_panel_top_half@cozy_screen:trade.trade_panel_top_half": {}
+                  }
+                ]
+              }
+            },
+            {
+              "right_panel": {
+                "type": "panel",
+                "size": ["64.0%", "100.0%"],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "controls": [
+                  {
+                    "trade_inventory_panel_top_half@cozy_screen:trade.trade_inventory_panel_top_half": {}
+                  },
+                  {
+                    "hotbar_inventory_content@cozy_common:container.hotbar_inventory_content": {}
+                  }
+                ]
+              }
+            },
+            {
+              "container_utils_content@cozy_common:container.container_utils_content": {}
+            }
+          ]
+        }
+      },
+      {
+        "container_gamepad_helpers@common.container_gamepad_helpers": {}
+      },
+      {
+        "selected_item_details_factory@common.selected_item_details_factory": {}
+      },
+      {
+        "item_lock_notification_factory@common.item_lock_notification_factory": {}
+      }
+    ]
+  },
+  
+  "trade_inventory_panel_top_half": {
+    "type": "panel",
+    "size": ["100.0%", "40.0%"],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": ["100.0%c", "100.0%cm"],
+          "offset": ["-1.5%", "17.0%"],
+          "controls": [
+            {
+              "item1@cozy_screen:trade.item_slot_holder": {
+                "$item_slot_control": "cozy_screen:trade.ingredient_1_item_slot",
+                "$item_details_control": "trade2.trade_details_1_button",
+                "$factory_name": "trade_details_1_factory"
+              }
+            },
+            {
+              "padding0": {
+                "type": "panel",
+                "size": [4.0, 0.0]
+              }
+            },
+            {
+              "item2@cozy_screen:trade.item_slot_holder": {
+                "$item_slot_control": "cozy_screen:trade.ingredient_2_item_slot",
+                "$item_details_control": "trade2.trade_details_2_button",
+                "$factory_name": "trade_details_2_factory"
+              }
+            },
+            {
+              "crossout_panel": {
+                "type": "panel",
+                "size": ["100.0%c + 14.0px", "100.0%sm"],
+                "controls": [
+                  {
+                    "crossout": {
+                      "type": "button",
+                      "size": "$size",
+                      "$size": [18.0, 12.0],
+                      "layer": 12,
+                      "anims": [
+                        "@cozy_animations:container.container_animation_size_exit_push",
+                        "@cozy_animations:container.container_animation_size_exit_pop",
+                        "@cozy_animations:container.container_animation_size_enter_pop",
+                        "@cozy_animations:container.container_animation_size_enter_push"
+                      ],
+                      "animation_reset_name": "screen_animation_reset",
+                      "controls": [
+                        {
+                          "crossout": {
+                            "type": "image",
+                            "texture": "cozy/sprites/trade/crossout",
+                            "size": ["100.0%", "100.0%"],
+                            "bindings": [
+                              {
+                                "binding_type": "collection_details"
+                              },
+                              {
+                                "binding_name": "#trade_cross_out_visible",
+                                "binding_name_override": "#visible"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "result_panel": {
+                "type": "panel",
+                "size": ["78.57142857142%c", "78.57142857142%c"],
+                "controls": [
+                  {
+                    "result_item@cozy_screen:trade.item_slot_holder": {
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "offset": [0.5, 0.0],
+                      "$item_slot_control": "cozy_screen:trade.result_item_slot",
+                      "$item_details_control": "trade2.enchantment_details_button",
+                      "$factory_name": "trade_enchantment_details_factory",
+                      "$button_ref": "cozy_screen:trade.trade_result_item_slot_button"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "exp_progress_bar@cozy_screen:trade.exp_progress_bar": {}
+      }
+    ]
+  },
+  
+  "ingredient_1_item_slot@cozy_screen:trade.item_slot": {
+    "$size": [22.0, 20.0],
+    "$item_collection_name": "trade2_ingredient1_item"
+  },
+
+  "ingredient_2_item_slot@cozy_screen:trade.item_slot": {
+    "$size": [22.0, 20.0],
+    "$item_collection_name": "trade2_ingredient2_item"
+  },
+
+  "result_item_slot@cozy_screen:trade.item_slot": {
+    "$size": [28.0, 26.0],
+    "$item_collection_name": "trade2_result_item",
+    "$button_ref": "cozy_screen:trade.trade_result_item_slot_button"
+  },
+  
+  "item_slot_holder": {
+    "type": "panel",
+    "size": ["100%cm", "100%cm"],
+    "$item_slot_control|default": "",
+    "$item_details_control|default": "",
+    "$factory_name|default": "",
+    "controls": [
+      {
+        "ingredient_1_item_slot@$item_slot_control": {}
+      },
+      {
+        "trade_details_1_button@$item_details_control": {
+          "size": [ 0, 12 ],
+          "inherit_max_sibling_width": true,
+          "anchor_from": "bottom_middle",
+          "anchor_to": "top_middle"
+        }
+      },
+      {
+        "trade_details_1_factory_holder@trade2.trade_details_factory_holder": {
+          "anchor_from": "top_middle",
+          "anchor_to": "bottom_middle"
+        }
+      }
+    ]
+  },
+  
+  "item_slot@cozy_common:container.container_item": {
+    "$item_renderer_binding_condition": "always_when_visible",
+    "$stack_count_binding_condition": "always_when_visible",
+    "$cell_image_binding_condition": "always"
+  },
+  
+  "trade_result_item_slot_button@cozy_common:container.container_slot_button_prototype": {
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.trade_take_all_place_all",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.trade_take_all_place_all",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.controller_back",
+        "to_button_id": "button.trade_take_all_place_all",
+        "mapping_type": "pressed",
+        "ignored": "(not $is_ps4)"
+      },
+      {
+        "from_button_id": "button.menu_secondary_select",
+        "to_button_id": "button.trade_take_half_place_one",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.controller_select",
+        "to_button_id": "button.trade_take_half_place_one",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_auto_place",
+        "to_button_id": "button.container_auto_place",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.controller_secondary_select",
+        "to_button_id": "button.container_auto_place",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_inventory_drop",
+        "to_button_id": "button.drop_one",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_inventory_drop_all",
+        "to_button_id": "button.drop_all",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.trade_coalesce_stack",
+        "mapping_type": "double_pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.trade_coalesce_stack",
+        "mapping_type": "double_pressed"
+      },
+      {
+        "to_button_id": "button.container_slot_hovered",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+  
+  "exp_progress_bar": {
+    "type": "panel",
+    "size": ["57.95454545454%", "7.53012048192%"],
+    "offset": [0.0, "23.03614457831%"],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "bindings": [
+      {
+        "binding_name": "#exp_bar_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "villager_name_label": {
+          "type": "label",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [0.0, "-210.0%"],
+          "color": "$title_text_color",
+          "layer": 1,
+          "text": "#name_label",
+          "bindings": [
+            {
+              "binding_name": "#name_label",
+              "binding_condition": "always_when_visible"
+            }
+          ]
+        }
+      },
+      {
+        "empty_progress_bar": {
+          "type": "image",
+          "texture": "cozy/sprites/trade/empty_progress",
+          "layer": 1,
+          "controls": [
+            {
+              "blue_progress_bar": {
+                "type": "image",
+                "texture": "cozy/sprites/trade/full_progress",
+                "clip_direction": "left",
+                "clip_pixelperfect": false,
+                "layer": 2,
+                "bindings": [
+                  {
+                    "binding_name": "#exp_progress",
+                    "binding_name_override": "#clip_ratio",
+                    "binding_type": "global",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            },
+            {
+              "white_progress_bar": {
+                "layer": 1,
+                "type": "image",
+                "texture": "cozy/sprites/trade/white_progress",
+                "clip_direction": "left",
+                "clip_pixelperfect": false,
+                "bindings": [
+                  {
+                    "binding_name": "#exp_possible_progress",
+                    "binding_name_override": "#clip_ratio",
+                    "binding_type": "global",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  
+  "trade_panel_top_half": {
+    "type": "panel",
+    "layer": 10,
+    "size": ["96%","84%"],
+    "offset": ["3%", "-5.0%"],
+    "anchor_from":"bottom_middle",
+    "anchor_to":"bottom_middle",
+    "controls": [
+      {
+        "trade_scrolling_panel@cozy_screen:trade.scrolling_panel": {
+          "$collection_name": "trade_tiers",
+          "$scrolling_content": "cozy_screen:trade.trade_left_stack_panel"
+        }
+      }
+    ]
+  },
+  
+  "scrolling_panel": {
+    "type": "panel",
+    "$scrolling_content": "common.empty_panel",
+    "$scroll_size|default": [6.0, "100.0%"],
+    "controls": [
+      {
+        "scroll_view@cozy_screen:trade.scroll_view": {}
+      }
+    ]
+  },
+  
+  "scroll_view": {
+    "type": "scroll_view",
+    "size": ["100.0%", "100.0%"],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "scroll_speed": 15,
+    "scrollbar_track_button": "button.scrollbar_skip_track",
+    "scrollbar_touch_button": "button.scrollbar_touch",
+    "touch_mode": true,
+    "always_listen_to_input": true,
+    "always_handle_pointer": true,
+    "allow_scroll_even_when_content_fits": false,
+    "scrollbar_always_visible": true,
+    "scrollbar_track": "track",
+    "scrollbar_box": "box",
+    "scroll_content": "content",
+    "scroll_view_port": "view_port",
+    "scroll_box_and_track_panel": "scrollbar",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.scrollbar_touch",
+        "mapping_type": "pressed",
+        "button_up_right_of_first_refusal": true
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#gesture_control_enabled"
+      },
+      {
+        "binding_name": "(not #is_using_gamepad)",
+        "binding_name_override": "#focus_for_tts_enabled_binding"
+      }
+    ],
+    "controls": [
+      {
+        "view_port": {
+          "type": "panel",
+          "size": ["100.0% - 6.0px", "100.0%"],
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "clips_children": true,
+          "controls": [
+            {
+              "content": {
+                "type": "panel",
+                "size": ["100.0%", "100.0%c"],
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "controls": [
+                  {
+                    "scrollcontent@$scrolling_content": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "scrollbar": {
+          "type": "panel",
+          "size": [6.0, "100%"],
+          "clips_children": true,
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "controls": [
+            {
+              "track@common.scrollbar_track": {
+                "$scroll_track_image_control": "common.empty_panel",
+                "$scroll_box_visible": true,
+                "size": [6.0, "100%"],
+                "anchor_from": "center",
+                "anchor_to": "center"
+              }
+            },
+            {
+              "box": {
+                "type": "scrollbar_box",
+                "size": [6.0, 27.0],
+                "layer": 5,
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "draggable": "vertical",
+                "contained": true,
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.menu_select",
+                    "mapping_type": "pressed",
+                    "button_up_right_of_first_refusal": true
+                  }
+                ],
+                "controls": [
+                  {
+                    "mouse_box@cozy_screen:trade.scroll_handle": {
+                      "ignored": "$touch"
+                    }
+                  },
+                  {
+                    "touch_box@cozy_screen:trade.scroll_handle": {
+                      "ignored": "(not $touch)"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  
+  "scroll_handle": {
+    "type": "image",
+    "texture":"cozy/sprites/trade/scrollbar_box",
+    "size": [6.0, 27.0]
+  },
+  
+  "trade_left_stack_panel": {
+    "type": "stack_panel",
+    "size": ["100.0% - 2.0px", "100.0%c"],
+    "controls": [
+      {
+        "trade_selector_stack_panel@cozy_screen:trade.trade_selector_stack_panel": {}
+      }
+    ]
+  },
+  
+  "trade_selector_stack_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": ["100%", "default"],
+    "factory": {
+      "name": "selected_pack_factory",
+      "control_name": "cozy_screen:trade.tier_stack_panel"
+    },
+    "collection_name": "$collection_name",
+    "bindings": [
+      {
+        "binding_name": "#trade_selector_total",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  
+  "tier_stack_panel": {
+    "type": "stack_panel",
+    "size": ["100%", "100%c + 1px"],
+    "orientation": "vertical",
+    "controls": [
+      {
+        "trade_toggle_stack_panel@cozy_screen:trade.trade_toggle_stack_panel": {}
+      }
+    ],
+    "bindings": []
+  },
+  
+  "trade_toggle_stack_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": ["100%", "default"],
+    "factory": {
+      "name": "selected_pack_factory",
+      "control_name": "cozy_screen:trade.trade_toggle"
+    },
+    "$trade_collection_name": "trades",
+    "collection_name": "$trade_collection_name",
+    "bindings": [
+      {
+        "binding_name": "#trade_tier_total",
+        "binding_name_override": "#collection_length",
+        "binding_type": "collection",
+        "binding_collection_name": "$collection_name"
+      }
+    ]
+  },
+  
+  "trade_toggle@common_toggles.light_image_toggle_collection": {
+    "layer": 2,
+    "size": ["100.0%", 24.0],
+    "$toggle_name": "trade_toggle",
+    "$template_toggle": "trade2.trade_actual_toggle",
+    "$toggle_binding_type": "none",
+    "$toggle_state_binding_name": "#trade_toggle_state",
+    "$toggle_enabled_binding_type": "none",
+    "$toggle_enabled_binding_name": "#trade_toggle_enabled",
+    "$toggle_enabled_binding_condition": "always_when_visible",
+    "$button_content": "cozy_screen:trade.toggle_content_holder",
+    "$unchecked_control": "cozy_screen:trade.trade_toggle_unchecked",
+    "$checked_control": "cozy_screen:trade.trade_toggle_checked",
+    "$unchecked_hover_control": "cozy_screen:trade.trade_toggle_unchecked",
+    "$checked_hover_control": "cozy_screen:trade.trade_toggle_checked",
+    "$unchecked_locked_control": "cozy_screen:trade.trade_toggle_locked",
+    "$unchecked_locked_hover_control": "cozy_screen:trade.trade_toggle_locked",
+    "$checked_locked_control": "cozy_screen:trade.trade_toggle_locked",
+    "$checked_locked_hover_control": "cozy_screen:trade.trade_toggle_locked"
+  },
+  
+  "toggle_content_holder": {
+    "type": "panel",
+    "layer": 10,
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "$toggle_content_control|default": "trade2.toggle_content",
+    "controls": [
+      {
+        "toggle_content@$toggle_content_control": {}
+      }
+    ]
+  },
+  
+  "trade_toggle_unchecked": {
+    "type": "image",
+    "texture": "cozy/sprites/trade/toggle_default",
+    "controls": [
+      {
+        "$button_content@$button_content": {}
+      }
+    ]
+  },
+  "trade_toggle_checked": {
+    "type": "image",
+    "texture": "cozy/sprites/trade/toggle_hover",
+    "controls": [
+      {
+        "$button_content@$button_content": {}
+      }
+    ]
+  },
+  
+  "trade_toggle_locked@cozy_screen:trade.trade_toggle_checked": {}
+}

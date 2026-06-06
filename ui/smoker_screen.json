@@ -1,0 +1,8 @@
+{
+  "namespace": "smoker",
+  
+  "smoker_screen@furnace.furnace_screen": {
+    "$container": "smoker",
+    "$screen_content": "cozy_screen:furnace.smoker_screen"
+  }
+}

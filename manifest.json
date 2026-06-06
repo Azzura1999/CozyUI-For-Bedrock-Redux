@@ -1,0 +1,20 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Version: 1.0.0\n移植: OtrEndPluer\nQQ下載&問題回饋群: 1091237699",
+    "name": "§fCozyUI §6Redux§f",
+    "uuid": "6f747245-6e64-706c-7565-720000000000",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 13, 0]
+  },
+  "modules": [
+    {
+      "description": "Nothing",
+      "type": "resources",
+      "uuid": "6f747245-6e64-706c-7565-720000000001",
+      "version": [1, 0, 0]
+    }
+  ]
+}
+
+// By OtrEndPluer. 

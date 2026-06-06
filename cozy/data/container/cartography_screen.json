@@ -1,0 +1,174 @@
+{
+  "namespace": "cozy_screen:cartography",
+  
+  "screen_content": {
+    "type": "panel",
+    "size": ["100.0%", "100.0%"],
+    "layer": 10,
+    "controls": [
+      {
+        "screen_panel@cozy_common:container.screen_base": {
+          "$size": [176.0, 166.0],
+          "controls": [
+            {
+              "container_exit_button@cozy_common:container.container_exit_button": {}
+            },
+            {
+              "cartography_panel_top_half@cozy_screen:cartography.cartography_panel_top_half": {}
+            },
+            {
+              "hotbar_inventory_content@cozy_common:container.hotbar_inventory_content": {}
+            },
+            {
+              "container_utils_content@cozy_common:container.container_utils_content": {}
+            }
+          ]
+        }
+      },
+      {
+        "container_gamepad_helpers@common.container_gamepad_helpers": {}
+      },
+      {
+        "selected_item_details_factory@common.selected_item_details_factory": {}
+      },
+      {
+        "item_lock_notification_factory@common.item_lock_notification_factory": {}
+      }
+    ]
+  },
+  
+  "cartography_panel_top_half": {
+    "type": "panel",
+    "layer": 5,
+    "size": ["100.0%", "40.0%"],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "left_items_panel": {
+          "type": "stack_panel",
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "size": ["100.0%cm", "100.0%c"],
+          "offset": ["8.0%", "12.0%"],
+          "controls": [
+            {
+              "input_items@cozy_common:container.container_item": {
+                "$item_collection_name": "cartography_input_items"
+              }
+            },
+            {"line0@cozy_common:container.container_stack_panel_line": {}},
+            {
+              "padding0": {
+                "type": "panel",
+                "size": ["100.0%sm", "100.0%sm"]
+              }
+            },
+            {"line1@cozy_common:container.container_stack_panel_line": {}},
+            {
+              "additional_items@cozy_common:container.container_item": {
+                "$item_collection_name": "cartography_additional_items"
+              }
+            }
+          ]
+        }
+      },/*
+      {
+        "crossout": {  //原版没有 crossout 这个控件
+          "type": "image",
+          "size": ["20.22727272727%", "36.75%"],
+          "offset": ["-22.5%", "12.0%"],
+          "texture": "cozy/sprites/cartography/crossout"
+        }
+      },*/
+      {
+        "map_image_panel@cozy_screen:cartography.map_image_panel": {}
+      },
+      {
+        "result_items@cozy_common:container.container_item": {
+          "$size": [22.5, 21.0],
+          "offset": ["-6.5%", "20.0%"],
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "$item_collection_name": "cartography_result_items"
+        }
+      }
+    ]
+  },
+  
+  "map_image_panel": {
+    "type": "panel",
+    "offset": ["7.0%", "16.0%"],
+    "$size": [66.0, 66.0],
+    "anims": [
+      "@cozy_animations:container.container_animation_size_exit_push",
+      "@cozy_animations:container.container_animation_size_exit_pop",
+      "@cozy_animations:container.container_animation_size_enter_pop",
+      "@cozy_animations:container.container_animation_size_enter_push"
+    ],
+    "animation_reset_name": "screen_animation_reset",
+    "controls": [
+      {
+        "none_map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map",
+          "$map_binding_name": "#is_none_mode"
+        }
+      },
+      {
+        "copy_map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map",
+          "$map_binding_name": "#is_clone_mode"
+        }
+      },
+      {
+        "rename_map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map",
+          "$map_binding_name": "#is_rename_mode"
+        }
+      },
+      {
+        "map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map",
+          "$map_binding_name": "#is_basic_map_mode"
+        }
+      },
+      {
+        "locator_map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map",
+          "$map_binding_name": "#is_locator_map_mode"
+        }
+      },
+      {
+        "zoom_map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map_zoom",
+          "$map_binding_name": "#is_extend_mode"
+        }
+      },
+      {
+        "lock_map@cozy_screen:cartography.map_image": {
+          "$map_texture": "cozy/sprites/cartography/map",
+          "$map_binding_name": "#is_locked_mode"
+        }
+      },
+      {
+        "Locked@cozy_screen:cartography.map_image": {
+          "size": ["90.90909090909%", "90.90909090909%"],
+          "layer": 5,
+          "$map_texture": "cozy/sprites/cartography/locked",
+          "$map_binding_name": "#is_locked_mode"
+        }
+      }
+    ]
+  },
+  
+  "map_image": {
+    "type": "image",
+    "texture": "$map_texture",
+    "bindings": [
+      {
+        "binding_name": "$map_binding_name",
+        "binding_name_override": "#visible"
+      }
+    ]
+  }
+}

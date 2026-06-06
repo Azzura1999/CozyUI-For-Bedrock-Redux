@@ -178,14 +178,24 @@
     "type": "panel",
     "controls": [
       {
-        "TOS": {
+        "hover_animation": {
           "type": "image",
+          "ignored": "(not $cozy_button_hover_animation)",
           "texture": "cozy/sprites/start/big_button_animation_hover",
           "size": ["100.0%", "100.0%"],
           "uv_size": [800.0, 80.0],
           "nineslice_size": 0,
           "uv": "@cozy_screen:start.big_button_hover_animation",
           "disable_anim_fast_forward": true
+        }
+      },
+      {
+        "hover": {
+          "type": "image",
+          "ignored": "$cozy_button_hover_animation",
+          "texture": "cozy/sprites/start/big_button_hover",
+          "size": ["100.0%", "100.0%"],
+          "nineslice_size": 0
         }
       }
     ]
@@ -267,14 +277,24 @@
     "type": "panel",
     "controls": [
       {
-        "TOS": {
+        "hover_animation": {
           "type": "image",
+          "ignored": "(not $cozy_button_hover_animation)",
           "texture": "cozy/sprites/start/small_button_animation_hover",
           "size": ["100.0%", "100.0%"],
           "uv_size": [400.0, 80.0],
           "nineslice_size": 0,
           "uv": "@cozy_screen:start.small_button_hover_animation",
           "disable_anim_fast_forward": true
+        }
+      },
+      {
+        "hover": {
+          "type": "image",
+          "ignored": "$cozy_button_hover_animation",
+          "texture": "cozy/sprites/start/small_button_hover",
+          "size": ["100.0%", "100.0%"],
+          "nineslice_size": 0
         }
       }
     ]

@@ -1,8 +1,0 @@
-{
-  "namespace": "blast_furnace",
-  
-  "blast_furnace_screen@furnace.furnace_screen": {
-    "$container": "blast_furnace",
-    "$screen_content": "cozy_screen:furnace.blast_furnace_screen"
-  }
-}
